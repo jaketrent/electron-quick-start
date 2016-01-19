@@ -1,23 +1,23 @@
 /* eslint strict: 0 */
-'use strict';
+'use strict'
 
-const webpack = require('webpack');
-const webpackTargetElectronRenderer = require('webpack-target-electron-renderer');
-const baseConfig = require('./webpack.config.base');
+const webpack = require('webpack')
+const webpackTargetElectronRenderer = require('webpack-target-electron-renderer')
+const baseConfig = require('./webpack.config.base')
 
 
-const config = Object.create(baseConfig);
+const config = Object.create(baseConfig)
 
-config.debug = true;
+config.debug = true
 
-config.devtool = 'cheap-module-eval-source-map';
+config.devtool = 'cheap-module-eval-source-map'
 
 config.entry = [
   'webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr',
   './app/index'
-];
+]
 
-config.output.publicPath = 'http://localhost:3000/dist/';
+config.output.publicPath = 'http://localhost:3000/dist/'
 
 config.module.loaders.push({
   test: /\.css$/,
@@ -25,7 +25,7 @@ config.module.loaders.push({
     'style-loader',
     'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!'
   ]
-});
+})
 
 
 config.plugins.push(
@@ -37,8 +37,8 @@ config.plugins.push(
       'NODE_ENV': JSON.stringify('development')
     }
   })
-);
+)
 
-config.target = webpackTargetElectronRenderer(config);
+config.target = webpackTargetElectronRenderer(config)
 
-module.exports = config;
+module.exports = config

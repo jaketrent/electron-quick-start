@@ -32,7 +32,7 @@ $ npm run hot-server
 $ npm run start-hot
 ```
 
-*Note: requires a node version >= 4 and an npm version >= 2.*
+*Note: requires a node version >= 5 and an npm version >= 3.*
 
 #### Toggle Chrome DevTools
 
@@ -64,7 +64,7 @@ You can find those lines in the file.
 
 ## CSS Modules support
 
-Import css file as [css-modules](https://github.com/css-modules/css-modules) using `.module.css`.
+All css fileß are imported as [css-modules](https://github.com/css-modules/css-modules).
 
 
 ## Package

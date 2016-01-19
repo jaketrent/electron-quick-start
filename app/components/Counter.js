@@ -1,6 +1,6 @@
-import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
-import styles from './counter.css';
+import React, { Component, PropTypes } from 'react'
+import { Link } from 'react-router'
+import styles from './counter.css'
 
 class Counter extends Component {
   static propTypes = {
@@ -12,7 +12,7 @@ class Counter extends Component {
   };
 
   render() {
-    const { increment, incrementIfOdd, incrementAsync, decrement, counter } = this.props;
+    const { increment, incrementIfOdd, incrementAsync, decrement, counter } = this.props
     return (
       <div>
         <div className={styles.backButton}>
@@ -34,8 +34,8 @@ class Counter extends Component {
           <button className={styles.btn} onClick={() => incrementAsync()}>async</button>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Counter;
+export default Counter

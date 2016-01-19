@@ -1,19 +1,19 @@
 /* eslint strict: 0 */
-'use strict';
+'use strict'
 
-const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const webpackTargetElectronRenderer = require('webpack-target-electron-renderer');
-const baseConfig = require('./webpack.config.base');
+const webpack = require('webpack')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const webpackTargetElectronRenderer = require('webpack-target-electron-renderer')
+const baseConfig = require('./webpack.config.base')
 
 
-const config = Object.create(baseConfig);
+const config = Object.create(baseConfig)
 
-config.devtool = 'source-map';
+config.devtool = 'source-map'
 
-config.entry = './app/index';
+config.entry = './app/index'
 
-config.output.publicPath = '../dist/';
+config.output.publicPath = '../dist/'
 
 config.module.loaders.push({
   test: /\.css$/,
@@ -21,7 +21,7 @@ config.module.loaders.push({
     'style-loader',
     'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
   )
-});
+})
 
 config.plugins.push(
   new webpack.optimize.OccurenceOrderPlugin(),
@@ -38,8 +38,8 @@ config.plugins.push(
     }
   }),
   new ExtractTextPlugin('style.css', { allChunks: true })
-);
+)
 
-config.target = webpackTargetElectronRenderer(config);
+config.target = webpackTargetElectronRenderer(config)
 
-module.exports = config;
+module.exports = config

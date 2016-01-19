@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router';
-import styles from './home.css';
+import React, { Component } from 'react'
+import { Link } from 'react-router'
+import styles from './home.css'
 
 
 export default class Home extends Component {
@@ -12,6 +12,6 @@ export default class Home extends Component {
           <Link to="/counter">to Counter</Link>
         </div>
       </div>
-    );
+    )
   }
 }
