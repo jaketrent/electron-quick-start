@@ -1,8 +1,7 @@
 {
-  "name": "electron-react-boilerplate",
-  "productName": "ElectronReact",
+  "name": "photo-surf",
   "version": "0.7.1",
-  "description": "Electron application boilerplate based on React, React Router, Webpack, React Hot Loader for rapid application development",
+  "description": "Photo browsing app",
   "main": "main.js",
   "scripts": {
     "test": "better-npm-run test",
@@ -61,27 +60,25 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chentsulin/electron-react-boilerplate.git"
+    "url": "git+https://github.com/jaketrent/photo-surf.git"
   },
   "author": {
-    "name": "C. T. Lin",
-    "email": "chentsulin@gmail.com",
-    "url": "https://github.com/chentsulin"
+    "name": "jaketrent",
+    "url": "https://github.com/jaketrent"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/chentsulin/electron-react-boilerplate/issues"
+    "url": "https://github.com/jaketrent/photo-surf/issues"
   },
   "keywords": [
     "electron",
-    "boilerplate",
     "react",
     "react-router",
     "flux",
     "webpack",
     "react-hot"
   ],
-  "homepage": "https://github.com/chentsulin/electron-react-boilerplate#readme",
+  "homepage": "https://github.com/jaketrent/photo-surf#readme",
   "devDependencies": {
     "asar": "^0.9.0",
     "babel-core": "^6.3.26",
@@ -144,7 +141,7 @@
     "redux-thunk": "^1.0.2"
   },
   "devEngines": {
-    "node": "4.x || 5.x",
-    "npm": "2.x || 3.x"
+    "node": "5.x",
+    "npm": "3.x"
   }
 }
