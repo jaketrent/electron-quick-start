@@ -20,13 +20,7 @@ config.entry = [
 config.output.publicPath = 'http://localhost:3000/dist/';
 
 config.module.loaders.push({
-  test: /^((?!\.module).)*\.css$/,
-  loaders: [
-    'style-loader',
-    'css-loader'
-  ]
-}, {
-  test: /\.module\.css$/,
+  test: /\.css$/,
   loaders: [
     'style-loader',
     'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!'

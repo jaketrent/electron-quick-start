@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router';
 import routes from './routes';
-import configureStore from './store/configureStore';
+import configureStore from './store/configure-store';
 import './app.css';
 
 const store = configureStore();
