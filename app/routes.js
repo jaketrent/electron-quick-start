@@ -6,6 +6,5 @@ import Browse from './browse'
 export default (
   <Route path="/" component={DefaultLayout}>
     <IndexRoute component={Browse} />
-    <Route path="/counter" component={CounterPage} />
   </Route>
 )

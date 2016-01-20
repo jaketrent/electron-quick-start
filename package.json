@@ -43,7 +43,7 @@
       }
     },
     "test": {
-      "command": "mocha --compilers js:babel-core/register --recursive --require ./test/setup.js test/**/*.spec.js",
+      "command": "mocha --compilers js:babel-core/register --recursive --require ./test/setup.js app/**/*.spec.js",
       "env": {
         "NODE_ENV": "test"
       }
