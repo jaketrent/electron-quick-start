@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
-import styles from './home.css'
+import styles from './index.css'
 
-
-export default class Home extends Component {
+export default class Browse extends Component {
   render() {
     return (
       <div>
         <div className={styles.container}>
-          <h2>Home</h2>
-          <Link to="/counter">to Counter</Link>
+          <h2>Find images</h2>
+          <input type="file" />
         </div>
       </div>
     )

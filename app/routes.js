@@ -1,13 +1,11 @@
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
-import App from './containers/app'
-import HomePage from './containers/home-page'
-import CounterPage from './containers/counter-page'
-
+import DefaultLayout from './common/layouts/default'
+import Browse from './browse'
 
 export default (
-  <Route path="/" component={App}>
-    <IndexRoute component={HomePage} />
+  <Route path="/" component={DefaultLayout}>
+    <IndexRoute component={Browse} />
     <Route path="/counter" component={CounterPage} />
   </Route>
 )

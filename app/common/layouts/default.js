@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 
-export default class App extends Component {
+export default class DefaultLayout extends Component {
   static propTypes = {
     children: PropTypes.element.isRequired
   };
@@ -12,7 +12,7 @@ export default class App extends Component {
         {
           (() => {
             if (process.env.NODE_ENV !== 'production') {
-              const DevTools = require('./dev-tools')
+              const DevTools = require('../containers/dev-tools')
               return <DevTools />
             }
           })()
