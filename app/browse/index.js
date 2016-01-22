@@ -65,6 +65,8 @@ export default class Browse extends Component {
                      onChange={this.handleChooseFiles} />
              </label>
           </form>
+
+          <Link to="filter">Go to filter</Link>
         </div>
       </div>
     )

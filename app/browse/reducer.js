@@ -33,6 +33,12 @@ export default function reduce(state = initialState, action = {}) {
 export const selector = {
   name: 'browse',
   select(state) {
-    return state.browse
+    return {
+      ...state.browse,
+      getFile(i) {
+        const file = state.browse.files[i]
+        return file ? file : {}
+      }
+    }
   }
 }
