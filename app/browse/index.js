@@ -1,25 +1,27 @@
+import autobind from 'autobind-decorator'
+import connect from 'redux-react-connect-by-name'
 import { Link } from 'react-router'
 import React, { Component } from 'react'
 
+import * as actions from './actions'
 import styles from './index.css'
 
+@connect([], [actions])
+@autobind
 export default class Browse extends Component {
   handleChooseDirectory(evt) {
     const f = evt.target.files.item(0)
-
     const dir = {
       name: f.name,
       path: f.path,
       type: 'directory',
       lastModifiedDate: f.lastModifiedDate
     }
-
-    console.log('dir', dir)
+    this.props.browse.setDirectory(dir)
   }
   handleChooseFiles(evt) {
     const fileList = evt.target.files
     const files = []
-
     for (let i = 0; i < fileList.length; ++i) {
       const f = fileList.item(i)
       files.push({
@@ -30,8 +32,7 @@ export default class Browse extends Component {
         lastModifiedDate: f.lastModifiedDate
       })
     }
-
-    console.log("files", files)
+    this.props.browse.setFiles(files)
   }
   giveCustomAttributes(input) {
     if (input && typeof input.setAttribute === 'function')
