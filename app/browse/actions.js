@@ -1,5 +1,7 @@
 import types from 'redux-types'
 
+import * as directoryUtils from './directory'
+
 export const name = 'browse'
 
 export const ACTION_TYPES = types(name,
@@ -9,9 +11,19 @@ export const ACTION_TYPES = types(name,
 )
 
 export function setDirectory(directory) {
-  return {
-    type: ACTION_TYPES.SET_DIRECTORY,
-    directory
+  return async (dispatch, getState) => {
+    dispatch({
+      type: ACTION_TYPES.SET_DIRECTORY,
+      directory
+    })
+
+    try {
+      const files = await directoryUtils.getImageFiles(directory)
+      dispatch(setFiles(files))
+    } catch (err) {
+      console.log("err", err)
+      // TODO: notification of error
+    }
   }
 }
 

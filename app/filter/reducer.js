@@ -1,6 +1,7 @@
 import clone from 'lodash/lang/clone'
 
 import { ACTION_TYPES } from './actions'
+import { ACTION_TYPES as BROWSE_ACTION_TYPES } from '../browse/actions'
 
 export const initialState = {
   activeIndex: 0,
@@ -65,12 +66,22 @@ function handleClearMarks(state, action) {
   }
 }
 
+function handleSetFiles(state) {
+  return {
+    ...state,
+    activeIndex: initialState.activeIndex,
+    toKeep: initialState.toKeep,
+    toDestroy: initialState.toDestroy
+  }
+}
+
 export default function reduce(state = initialState, action = {}) {
   const handlers = {
     [ACTION_TYPES.SET_ACTIVE_INDEX]: handleSetActiveIndex,
     [ACTION_TYPES.MARK_KEEP]: handleMarkKeep,
     [ACTION_TYPES.MARK_DESTROY]: handleMarkDestroy,
-    [ACTION_TYPES.CLEAR_MARKS]: handleClearMarks
+    [ACTION_TYPES.CLEAR_MARKS]: handleClearMarks,
+    [BROWSE_ACTION_TYPES.SET_FILES]: handleSetFiles
   }
 
   return handlers[action.type]

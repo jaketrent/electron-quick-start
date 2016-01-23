@@ -4,8 +4,8 @@ import { Link } from 'react-router'
 import React, { Component } from 'react'
 
 import * as actions from './actions'
-import * as directory from './directory'
-import * as file from './file'
+import * as directoryUtils from './directory'
+import * as fileUtils from './file'
 import styles from './index.css'
 
 @connect([], [actions])
@@ -13,20 +13,20 @@ import styles from './index.css'
 export default class Browse extends Component {
   handleChooseDirectory(evt) {
     const f = evt.target.files.item(0)
-    this.props.browse.setDirectory(directory.create(f))
+    this.props.browse.setDirectory(directoryUtils.create(f))
   }
   handleChooseFiles(evt) {
     const fileList = evt.target.files
     const files = []
     for (let i = 0; i < fileList.length; ++i) {
       const f = fileList.item(i)
-      files.push(file.create(f))
+      files.push(fileUtils.create(f))
     }
     this.props.browse.setFiles(files)
   }
   handleChooseDestination(evt) {
     const f = evt.target.files.item(0)
-    this.props.browse.setDestination(directory.create(f))
+    this.props.browse.setDestination(directoryUtils.create(f))
   }
   setDirectoryAttr(input) {
     if (input && typeof input.setAttribute === 'function')
