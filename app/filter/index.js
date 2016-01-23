@@ -1,6 +1,7 @@
 import autobind from 'autobind-decorator'
 import connect from 'redux-react-connect-by-name'
 import Image from './image'
+import IsMarked from './is-marked'
 import { Link } from 'react-router'
 import React from 'react'
 
@@ -25,13 +26,15 @@ export default class FilterPage extends React.Component {
         <button onClick={this.advance.bind(this, -1)}>prev</button>
         <button onClick={this.advance.bind(this, 1)}>next</button>
 
-        <div>index: {this.props.filter.activeIndex}</div>
-        <div>file: {activeFile.name}</div>
-        <div>all files:</div>
+        <button onClick={this.props.filter.markKeep.bind(null, this.props.filter.activeIndex)}>Keep</button>
+        <button onClick={this.props.filter.clearMarks.bind(null, this.props.filter.activeIndex)}>Clear</button>
+        <button onClick={this.props.filter.markDestroy.bind(null, this.props.filter.activeIndex)}>Destroy</button>
 
-        <ul>
-          {this.props.browse.files.map((f, i) => <li key={i}>{f.name}</li>)}
-        </ul>
+        <div>file {this.props.filter.activeIndex + 1} of {this.props.browse.files.length}</div>
+        <div>file: {activeFile.name}</div>
+
+        <IsMarked is={this.props.filter.isMarkedKeep(this.props.filter.activeIndex)}>Is marked for keep?</IsMarked>
+        <IsMarked is={this.props.filter.isMarkedDestroy(this.props.filter.activeIndex)}>Is marked for destroy?</IsMarked>
 
         <Image file={activeFile} />
       </div>

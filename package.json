@@ -134,6 +134,7 @@
     "electron-debug": "^0.5.1",
     "font-awesome": "^4.4.0",
     "history": "^1.17.0",
+    "lodash": "^3.9.1",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
     "react-styleable": "^2.0.0",
