@@ -4,7 +4,8 @@ export const name = 'browse'
 
 export const ACTION_TYPES = types(name,
   'SET_DIRECTORY',
-  'SET_FILES'
+  'SET_FILES',
+  'SET_DESTINATION'
 )
 
 export function setDirectory(directory) {
@@ -18,5 +19,12 @@ export function setFiles(files) {
   return {
     type: ACTION_TYPES.SET_FILES,
     files
+  }
+}
+
+export function setDestination(directory) {
+  return {
+    type: ACTION_TYPES.SET_DESTINATION,
+    directory
   }
 }

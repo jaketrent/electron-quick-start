@@ -2,7 +2,8 @@ import { ACTION_TYPES } from './actions'
 
 export const initialState = {
   directory: null,
-  files: []
+  files: [],
+  destination: null
 }
 
 function handleSetDirectory(state, action) {
@@ -19,10 +20,18 @@ function handleSetFiles(state, action) {
   }
 }
 
+function handleSetDestination(state, action) {
+  return {
+    ...state,
+    destination: action.directory
+  }
+}
+
 export default function reduce(state = initialState, action = {}) {
   const handlers = {
     [ACTION_TYPES.SET_DIRECTORY]: handleSetDirectory,
-    [ACTION_TYPES.SET_FILES]: handleSetFiles
+    [ACTION_TYPES.SET_FILES]: handleSetFiles,
+    [ACTION_TYPES.SET_DESTINATION]: handleSetDestination
   }
 
   return handlers[action.type]

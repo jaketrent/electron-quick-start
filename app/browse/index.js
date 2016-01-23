@@ -4,6 +4,8 @@ import { Link } from 'react-router'
 import React, { Component } from 'react'
 
 import * as actions from './actions'
+import * as directory from './directory'
+import * as file from './file'
 import styles from './index.css'
 
 @connect([], [actions])
@@ -11,30 +13,22 @@ import styles from './index.css'
 export default class Browse extends Component {
   handleChooseDirectory(evt) {
     const f = evt.target.files.item(0)
-    const dir = {
-      name: f.name,
-      path: f.path,
-      type: 'directory',
-      lastModifiedDate: f.lastModifiedDate
-    }
-    this.props.browse.setDirectory(dir)
+    this.props.browse.setDirectory(directory.create(f))
   }
   handleChooseFiles(evt) {
     const fileList = evt.target.files
     const files = []
     for (let i = 0; i < fileList.length; ++i) {
       const f = fileList.item(i)
-      files.push({
-        name: f.name,
-        path: f.path,
-        type: f.type,
-        size: f.size,
-        lastModifiedDate: f.lastModifiedDate
-      })
+      files.push(file.create(f))
     }
     this.props.browse.setFiles(files)
   }
-  giveCustomAttributes(input) {
+  handleChooseDestination(evt) {
+    const f = evt.target.files.item(0)
+    this.props.browse.setDestination(directory.create(f))
+  }
+  setDirectoryAttr(input) {
     if (input && typeof input.setAttribute === 'function')
       input.setAttribute('webkitdirectory', 'webkitdirectory')
   }
@@ -49,9 +43,8 @@ export default class Browse extends Component {
               <div>Select Directory</div>
               <input type="file"
                      id="directory"
-                     id="directory"
                      multiple="multiple"
-                     ref={this.giveCustomAttributes}
+                     ref={this.setDirectoryAttr}
                      placeholder="Choose Directory"
                      onChange={this.handleChooseDirectory} />
             </label>
@@ -63,6 +56,14 @@ export default class Browse extends Component {
                      accept="image/*"
                      placeholder="Choose Files"
                      onChange={this.handleChooseFiles} />
+             </label>
+            <label htmlFor="destination">
+              <div>Select Destination</div>
+                <input type="file"
+                       id="destination"
+                       ref={this.setDirectoryAttr}
+                       placeholder="Choose Directory"
+                       onChange={this.handleChooseDestination} />
              </label>
           </form>
 
