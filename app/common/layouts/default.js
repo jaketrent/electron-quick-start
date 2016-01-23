@@ -4,7 +4,6 @@ export default class DefaultLayout extends Component {
   static propTypes = {
     children: PropTypes.element.isRequired
   };
-
   render() {
     return (
       <div>

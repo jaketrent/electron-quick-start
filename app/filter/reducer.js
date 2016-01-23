@@ -45,6 +45,7 @@ function handleMarkDestroy(state, action) {
 }
 
 function handleClearMarks(state, action) {
+  console.log('reducer clear')
   const indexInKeep = state.toKeep.indexOf(action.index)
   let toKeep = state.toKeep
   if (indexInKeep > -1) {

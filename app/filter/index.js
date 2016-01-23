@@ -9,10 +9,17 @@ import * as actions from './actions'
 import * as browseActions from '../browse/actions'
 import { selector as browse } from '../browse/reducer'
 import { selector as filter } from './reducer'
+import useShortcuts from './use-shortcuts'
 
 @connect([browse, filter], [actions, browseActions])
 @autobind
 export default class FilterPage extends React.Component {
+  componentDidMount() {
+    window.addEventListener('keyup', useShortcuts)
+  }
+  componentWillUnmount() {
+    window.removeEventListener('keyup', useShortcuts)
+  }
   advance(direction) {
     this.props.filter.setActiveIndex(this.props.filter.activeIndex + direction)
   }
@@ -23,12 +30,12 @@ export default class FilterPage extends React.Component {
         <h2>Filter</h2>
 
         <Link to="/">to Browse</Link>
-        <button onClick={this.advance.bind(this, -1)}>prev</button>
-        <button onClick={this.advance.bind(this, 1)}>next</button>
+        <button onClick={this.prev}>prev</button>
+        <button onClick={this.next}>next</button>
 
-        <button onClick={this.props.filter.markKeep.bind(null, this.props.filter.activeIndex)}>Keep</button>
-        <button onClick={this.props.filter.clearMarks.bind(null, this.props.filter.activeIndex)}>Clear</button>
-        <button onClick={this.props.filter.markDestroy.bind(null, this.props.filter.activeIndex)}>Destroy</button>
+        <button onClick={this.props.filter.markKeep}>Keep</button>
+        <button onClick={this.props.filter.clearMarks}>Clear</button>
+        <button onClick={this.props.filter.markDestroy}>Destroy</button>
 
         <div>file {this.props.filter.activeIndex + 1} of {this.props.browse.files.length}</div>
         <div>file: {activeFile.name}</div>

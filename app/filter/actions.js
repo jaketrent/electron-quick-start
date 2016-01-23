@@ -1,6 +1,7 @@
 import types from 'redux-types'
 
 import { selector as browse } from '../browse/reducer'
+import { selector as filter } from './reducer'
 
 export const name = 'filter'
 
@@ -18,6 +19,18 @@ function getIndexWithinFileBounds(filesCount, index) {
   return index
 }
 
+export function next() {
+  return (dispatch, getState) => {
+    dispatch(setActiveIndex(filter.select(getState()).activeIndex + 1))
+  }
+}
+
+export function prev() {
+  return (dispatch, getState) => {
+    dispatch(setActiveIndex(filter.select(getState()).activeIndex - 1))
+  }
+}
+
 export function setActiveIndex(index) {
   return (dispatch, getState) => {
     const filesCount = browse.select(getState()).files.length
@@ -29,23 +42,29 @@ export function setActiveIndex(index) {
   }
 }
 
-export function markKeep(index) {
-  return {
-    type: ACTION_TYPES.MARK_KEEP,
-    index
+export function markKeep() {
+  return (dispatch, getState) => {
+    dispatch({
+      type: ACTION_TYPES.MARK_KEEP,
+      index: filter.select(getState()).activeIndex
+    })
   }
 }
 
-export function markDestroy(index) {
-  return {
-    type: ACTION_TYPES.MARK_DESTROY,
-    index
+export function markDestroy() {
+  return (dispatch, getState) => {
+    dispatch({
+      type: ACTION_TYPES.MARK_DESTROY,
+      index: filter.select(getState()).activeIndex
+    })
   }
 }
 
-export function clearMarks(index) {
-  return {
-    type: ACTION_TYPES.CLEAR_MARKS,
-    index
+export function clearMarks() {
+  return (dispatch, getState) => {
+    dispatch({
+      type: ACTION_TYPES.CLEAR_MARKS,
+      index: filter.select(getState()).activeIndex
+    })
   }
 }
