@@ -7,7 +7,6 @@ const { date, number, shape, string } = React.PropTypes
 
 function Image(props) {
   const src = 'file://' + props.file.path
-  console.log("src", src)
   return (
     <img className={props.css.root} src={src} alt={props.file.name} />
   )

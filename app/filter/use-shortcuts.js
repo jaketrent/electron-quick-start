@@ -16,7 +16,6 @@ const shortcuts = {
 }
 
 export default function useShortcuts(evt) {
-  console.log("evt.keyCode", evt.keyCode)
   const shortcut = shortcuts[evt.keyCode]
   if (shortcut)
     store.dispatch(shortcut())

@@ -7,6 +7,7 @@ import React from 'react'
 
 import * as actions from './actions'
 import * as browseActions from '../browse/actions'
+import FilesIndex from './files-index'
 import { selector as browse } from '../browse/reducer'
 import { selector as filter } from './reducer'
 import useShortcuts from './use-shortcuts'
@@ -15,10 +16,12 @@ import useShortcuts from './use-shortcuts'
 @autobind
 export default class FilterPage extends React.Component {
   componentDidMount() {
-    window.addEventListener('keyup', useShortcuts)
+    if (window)
+      window.addEventListener('keyup', useShortcuts)
   }
   componentWillUnmount() {
-    window.removeEventListener('keyup', useShortcuts)
+    if (window)
+      window.removeEventListener('keyup', useShortcuts)
   }
   advance(direction) {
     this.props.filter.setActiveIndex(this.props.filter.activeIndex + direction)
@@ -43,7 +46,12 @@ export default class FilterPage extends React.Component {
         <IsMarked is={this.props.filter.isMarkedKeep(this.props.filter.activeIndex)}>Is marked for keep?</IsMarked>
         <IsMarked is={this.props.filter.isMarkedDestroy(this.props.filter.activeIndex)}>Is marked for destroy?</IsMarked>
 
-        <Image file={activeFile} />
+        <FilesIndex activeIndex={this.props.filter.activeIndex}
+                    files={this.props.browse.files}
+                    isMarkedDestroy={this.props.filter.isMarkedDestroy}
+                    isMarkedKeep={this.props.filter.isMarkedKeep} />
+
+                  <Image file={activeFile} />
       </div>
     )
   }

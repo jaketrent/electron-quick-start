@@ -1,0 +1,31 @@
+.root {
+  outline: 1px solid gray;
+  margin: 0;
+  padding: 0;
+}
+.preview {
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: center;
+  color: gray;
+  transition: all 500ms;
+}
+.previewToKeep {
+  composes: preview;
+  color: green;
+}
+.previewToDestroy {
+  composes: preview;
+  color: red;
+}
+.previewActive {
+  composes: preview;
+  color: white;
+  font-size: 20px;
+}
