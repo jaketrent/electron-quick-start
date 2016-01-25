@@ -15,7 +15,7 @@ function getPreviewClassName(props) {
 function FilePreview(props) {
   return (
     <div className={getPreviewClassName(props)}>
-      {props.index}
+      {props.index + 1}
     </div>
   )
 }
@@ -38,7 +38,8 @@ function renderFile(props, file, i) {
                  index={i}
                  isActive={props.activeIndex === i}
                  isMarkedDestroy={props.isMarkedDestroy}
-                 isMarkedKeep={props.isMarkedKeep} />
+                 isMarkedKeep={props.isMarkedKeep}
+                 key={i} />
   )
 }
 

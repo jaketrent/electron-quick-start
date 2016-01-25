@@ -33,6 +33,8 @@ export default class FilterPage extends React.Component {
         <h2>Filter</h2>
 
         <Link to="/">to Browse</Link>
+        <Link to="/export">to Export</Link>
+
         <button onClick={this.prev}>prev</button>
         <button onClick={this.next}>next</button>
 
@@ -51,7 +53,7 @@ export default class FilterPage extends React.Component {
                     isMarkedDestroy={this.props.filter.isMarkedDestroy}
                     isMarkedKeep={this.props.filter.isMarkedKeep} />
 
-                  <Image file={activeFile} />
+        <Image file={activeFile} />
       </div>
     )
   }

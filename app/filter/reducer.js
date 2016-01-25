@@ -95,10 +95,13 @@ export const selector = {
     return {
       ...state.filter,
       isMarkedKeep(index) {
-        return state.filter.toKeep.indexOf(index) > -1
+        return state.filter.toKeep.includes(index)
       },
       isMarkedDestroy(index) {
-        return state.filter.toDestroy.indexOf(index) > -1
+        return state.filter.toDestroy.includes(index)
+      },
+      getToKeepFiles(allFiles) {
+        return allFiles.filter((f, i) => state.filter.toKeep.includes(i))
       }
     }
   }
