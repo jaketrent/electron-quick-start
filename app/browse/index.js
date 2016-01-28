@@ -5,7 +5,6 @@ import React, { Component } from 'react'
 
 import * as actions from './actions'
 import * as directoryUtils from './directory'
-import * as fileUtils from './file'
 import styles from './index.css'
 
 @connect([], [actions])
@@ -14,15 +13,6 @@ export default class Browse extends Component {
   handleChooseDirectory(evt) {
     const f = evt.target.files.item(0)
     this.props.browse.setDirectory(directoryUtils.create(f))
-  }
-  handleChooseFiles(evt) {
-    const fileList = evt.target.files
-    const files = []
-    for (let i = 0; i < fileList.length; ++i) {
-      const f = fileList.item(i)
-      files.push(fileUtils.create(f))
-    }
-    this.props.browse.setFiles(files)
   }
   handleChooseDestination(evt) {
     const f = evt.target.files.item(0)
@@ -48,15 +38,6 @@ export default class Browse extends Component {
                      placeholder="Choose Directory"
                      onChange={this.handleChooseDirectory} />
             </label>
-            <label htmlFor="files">
-              <div>Select Files</div>
-              <input type="file"
-                     id="files"
-                     multiple="multiple"
-                     accept="image/*"
-                     placeholder="Choose Files"
-                     onChange={this.handleChooseFiles} />
-             </label>
             <label htmlFor="destination">
               <div>Select Destination</div>
                 <input type="file"
