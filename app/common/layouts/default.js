@@ -1,22 +1,24 @@
 import React, { Component, PropTypes } from 'react'
+import styleable from 'react-styleable'
 
-export default class DefaultLayout extends Component {
-  static propTypes = {
-    children: PropTypes.element.isRequired
-  };
-  render() {
-    return (
-      <div>
-        {this.props.children}
-        {
-          (() => {
-            if (process.env.NODE_ENV !== 'production') {
-              const DevTools = require('../containers/dev-tools')
-              return <DevTools />
-            }
-          })()
-        }
-      </div>
-    )
-  }
+import css from './default.css'
+import Header from '../components/header'
+
+function DefaultLayout(props) {
+  return (
+    <div className={props.css.root}>
+      <Header />
+      {props.children}
+      {
+        (() => {
+          if (process.env.NODE_ENV !== 'production') {
+            const DevTools = require('../containers/dev-tools')
+            return <DevTools />
+          }
+        })()
+      }
+    </div>
+  )
 }
+
+export default styleable(css)(DefaultLayout)

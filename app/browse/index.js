@@ -23,7 +23,6 @@ export default class Browse extends Component {
       input.setAttribute('webkitdirectory', 'webkitdirectory')
   }
   render() {
-
     return (
       <div>
         <div className={styles.container}>
