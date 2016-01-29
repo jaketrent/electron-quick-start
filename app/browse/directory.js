@@ -2,10 +2,18 @@ import fs from 'fs'
 
 import * as fileUtils from './file'
 
+function shortenPath(path) {
+  const isHomeDir = /^(\/Users\/[^\/]+|\/home\/[^\/]+)(.*)/
+  return isHomeDir.test(path)
+    ? '~' + path.replace(isHomeDir, '$2')
+    : path
+}
+
 export function create(nativeFile) {
   return {
     name: nativeFile.name,
     path: nativeFile.path,
+    shortPath: shortenPath(nativeFile.path),
     type: 'directory',
     lastModifiedDate: nativeFile.lastModifiedDate
   }

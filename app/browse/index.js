@@ -5,56 +5,75 @@ import styleable from 'react-styleable'
 import React, { Component } from 'react'
 
 import * as actions from './actions'
+import { selector as browse } from './reducer'
+import BrowseDirectory from './browse-directory'
 import * as directoryUtils from './directory'
 import css from './index.css'
 
-const { func } = React.PropTypes
+const { arrayOf, func, object } = React.PropTypes
 
-function setDirectoryAttr(input) {
-  if (input && typeof input.setAttribute === 'function')
-    input.setAttribute('webkitdirectory', 'webkitdirectory')
+function renderSrcFooter(props) {
+  if (props.directory)
+    return (
+      <footer className={props.css.paneFooter}>
+        <div>Selected directory <code className={props.css.dirName}>{props.directory.shortPath}</code></div>
+        <div>Found {props.files && props.files.length} images</div>
+      </footer>
+    )
+}
+
+function renderDestFooter(props) {
+  if (props.destination)
+    return (
+      <footer className={props.css.paneFooter}>
+        <div>Images will be copied to <code className={props.css.dirName}>{props.destination.shortPath}</code></div>
+      </footer>
+    )
+}
+
+function renderContinue(props) {
+  if (props.directory && props.files.length > 0 && props.destination)
+    return (
+      <div className={props.css.continue}>
+        <Link to="filter" className={props.css.continueBtn}>
+          Surf Images
+          <i className={props.css.continueBtnIcon}>▶</i>
+        </Link>
+      </div>
+    )
 }
 
 function Browse(props) {
   return (
     <div className={props.css.root}>
       <div className={props.css.panes}>
-        <div className={props.css.pane}>
-          <label htmlFor="directory">
-            <div>Select a source directory</div>
-            <input type="file"
-                   id="directory"
-                   multiple="multiple"
-                   ref={setDirectoryAttr}
-                   placeholder="Choose Directory"
-                   onChange={props.onChangeSrcDir} />
-          </label>
-        </div>
-        <div className={props.css.pane}>
-          <label htmlFor="destination">
-            <div>Select a destination directory</div>
-              <input type="file"
-                     id="destination"
-                     ref={setDirectoryAttr}
-                     placeholder="Choose Directory"
-                     onChange={props.onChangeDestDir} />
-           </label>
-        </div>
+        <section className={props.css.pane}>
+          <h2 className={props.css.title}>Select a source</h2>
+          <BrowseDirectory name="directory" onChange={props.onChangeSrcDir} />
+          {renderSrcFooter(props)}
+        </section>
+        <section className={props.css.pane}>
+          <h2 className={props.css.title}>Select a destination</h2>
+          <BrowseDirectory name="destination" onChange={props.onChangeDestDir} />
+          {renderDestFooter(props)}
+        </section>
       </div>
-
-      <Link to="filter">Go to filter</Link>
+      {renderContinue(props)}
     </div>
   )
 }
 
 Browse.propTypes = {
+  destination: object,
+  directory: object,
+  files: arrayOf(object),
   onChangeSrcDir: func.isRequired,
   onChangeDestDir: func.isRequired
 }
 
 const StyledBrowse = styleable(css)(Browse)
 
-@connect([], [actions])
+@connect([browse], [actions])
 @autobind
 export default class BrowseContainer extends Component {
   handleChooseSrcDir(evt) {
@@ -67,8 +86,11 @@ export default class BrowseContainer extends Component {
   }
   render() {
     return (
-      <StyledBrowse onChangeDestDir={this.handleChooseSrcDir}
-                    onChangeSrcDir={this.handleChooseDestDir} />
+      <StyledBrowse destination={this.props.browse.destination}
+                    directory={this.props.browse.directory}
+                    files={this.props.browse.files}
+                    onChangeDestDir={this.handleChooseDestDir}
+                    onChangeSrcDir={this.handleChooseSrcDir} />
     )
   }
 }
