@@ -2,6 +2,10 @@
 'use strict'
 
 const path = require('path')
+const postcssImport = require('postcss-import')
+const postcssUrl = require('postcss-url')
+const postcssCssNext = require('postcss-cssnext')
+const postcssReporter = require('postcss-reporter')
 
 module.exports = {
   module: {
@@ -25,5 +29,11 @@ module.exports = {
   ],
   externals: [
     // put your node 3rd party libraries which can't be built with webpack here (mysql, mongodb, and so on..)
-  ]
+  ],
+  postcss: [
+    postcssImport,
+    postcssUrl({ url: function (url) { return url } }),
+    postcssCssNext,
+    postcssReporter
+  ],
 }
