@@ -1,0 +1,21 @@
+:root {
+  --color: #505050;
+  --dimension: 60px;
+}
+
+.root {
+  display: inline-block;
+  transform: rotate(180deg);
+  color: var(--color);
+  font-size: calc(var(--dimension) * .66);
+  line-height: var(--dimension);
+  height: var(--dimension);
+  width: var(--dimension);
+  border: 3px solid var(--color);
+  border-radius: 50%;
+  text-align: center;
+  text-decoration: none;
+}
+.root:hover {
+  text-decoration: none;
+}
