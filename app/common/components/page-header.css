@@ -8,8 +8,14 @@
 .center {
   flex: 2;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
 }
 .right {
   flex: 1;
 }
+
+
+/*3 col across
+middle stacks
+within each row in stacks
+centered*/

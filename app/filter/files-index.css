@@ -1,28 +1,52 @@
+:root {
+  --previewDimension: 30px;
+}
+
 .root {
-  outline: 1px solid gray;
+  display: flex;
+  justify-content: center;
+}
+.sliderContainer {
+  position: relative;
+  display: block;
+  outline: 1px solid rgb(99, 99, 99);
   margin: 0;
   padding: 0;
+  overflow: hidden;
+  font-weight: 100;
+  width: calc(var(--previewDimension) * 7);
+  height: var(--previewDimension);
+  box-shadow: inset 1px 1px 5px rgb(23, 23, 23);
+}
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: var(--previewDimension);
+  overflow: hidden;
+  transition: all 1000ms ease-in-out;
+  white-space: nowrap;
 }
 .preview {
   display: inline-block;
-  height: 30px;
-  width: 30px;
-  line-height: 30px;
+  height: var(--previewDimension);
+  width: var(--previewDimension);
+  line-height: var(--previewDimension);
   font-size: 14px;
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis;
+  text-overflow: clip;
   text-align: center;
   color: gray;
   transition: all 500ms;
 }
 .previewToKeep {
   composes: preview;
-  color: green;
+  color: rgb(7, 210, 70);
 }
 .previewToDestroy {
   composes: preview;
-  color: red;
+  color: rgb(214, 19, 0);
 }
 .previewActive {
   composes: preview;

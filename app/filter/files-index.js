@@ -47,11 +47,24 @@ function renderFiles(props) {
   return (props.files || []).map(renderFile.bind(null, props))
 }
 
+const PREVIEW_DIMENSION = 30 // from css
+const centerIndex = 3
+
+function getSliderStyle(props) {
+  return {
+    left: (-1 * props.activeIndex * PREVIEW_DIMENSION) + (PREVIEW_DIMENSION * centerIndex)
+  }
+}
+
 function FilesIndex(props) {
   return (
-    <ol className={props.css.root}>
-      {renderFiles(props)}
-    </ol>
+    <div className={props.css.root}>
+      <div className={props.css.sliderContainer}>
+        <div className={props.css.slider} style={getSliderStyle(props)}>
+          {renderFiles(props)}
+        </div>
+      </div>
+    </div>
   )
 }
 
