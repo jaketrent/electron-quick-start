@@ -17,30 +17,18 @@ function handleSetActiveIndex(state, action) {
 }
 
 function handleMarkKeep(state, action) {
-  const indexInDestroy = state.toDestroy.indexOf(action.index)
-  let toDestroy = state.toDestroy
-  if (indexInDestroy > -1) {
-    toDestroy = clone(state.toDestroy)
-    toDestroy.splice(indexInDestroy, 1)
-  }
   return {
     ...state,
     toKeep: state.toKeep.concat([action.index]).sort(),
-    toDestroy
+    toDestroy: state.toDestroy.filter(index => index !== action.index)
   }
 }
 
 function handleMarkDestroy(state, action) {
-  const indexInKeep = state.toKeep.indexOf(action.index)
-  let toKeep = state.toKeep
-  if (indexInKeep > -1) {
-    toKeep = clone(state.toKeep)
-    toKeep.splice(indexInKeep, 1)
-  }
   return {
     ...state,
     toDestroy: state.toDestroy.concat([action.index]).sort(),
-    toKeep
+    toKeep: state.toKeep.filter(index => index !== action.index)
   }
 }
 

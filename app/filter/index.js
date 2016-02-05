@@ -33,6 +33,7 @@ export default class FilterPageContainer extends React.Component {
     return [
       <FilterControls isMarkedKeep={this.props.filter.isMarkedKeep(this.props.filter.activeIndex)}
                       isMarkedDestroy={this.props.filter.isMarkedDestroy(this.props.filter.activeIndex)}
+                      key="controls"
                       onPrev={this.props.filter.prev}
                       onKeep={this.props.filter.markKeep}
                       onDestroy={this.props.filter.markDestroy}
@@ -40,7 +41,8 @@ export default class FilterPageContainer extends React.Component {
       <FilesIndex activeIndex={this.props.filter.activeIndex}
                   files={this.props.browse.files}
                   isMarkedDestroy={this.props.filter.isMarkedDestroy}
-                  isMarkedKeep={this.props.filter.isMarkedKeep} />
+                  isMarkedKeep={this.props.filter.isMarkedKeep}
+                  key="index" />
     ]
   }
   render() {
@@ -55,7 +57,7 @@ export default class FilterPageContainer extends React.Component {
 
         <IsMarked is={this.props.filter.isMarkedKeep(this.props.filter.activeIndex)}>Is marked for keep?</IsMarked>
         <IsMarked is={this.props.filter.isMarkedDestroy(this.props.filter.activeIndex)}>Is marked for destroy?</IsMarked>
-        
+
         <Image file={activeFile} />
       </div>
     )
