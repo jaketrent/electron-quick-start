@@ -1,5 +1,7 @@
+@import "./variables.css";
+
 .root {
-  margin-bottom: 20px;
+  height: var(--headerHeight);
 }
 .title {
   margin: 0;

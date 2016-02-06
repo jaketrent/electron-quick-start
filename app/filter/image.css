@@ -1,4 +1,6 @@
+@import "./variables.css";
+
 .root {
-  height: 300px;
+  height: calc(100vh - var(--filterPageHeaderHeight) - 40px);
   border: 4px solid white;
 }

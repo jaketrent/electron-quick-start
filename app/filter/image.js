@@ -23,21 +23,3 @@ Image.propTypes = {
 }
 
 export default styleable(css)(Image)
-
-
-// import React from 'react'
-// export default function Image2(props) {
-//   return (
-//     <div>Awesome image</div>
-//   )
-// }
-
-// import React from 'react'
-//
-// export default class Image3 extends React.Component {
-//   render() {
-//     return (
-//       <div>Comp Image3</div>
-//     )
-//   }
-// }

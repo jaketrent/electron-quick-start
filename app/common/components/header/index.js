@@ -1,7 +1,7 @@
 import React from 'react'
 import styleable from 'react-styleable'
 
-import css from './header.css'
+import css from './index.css'
 
 function Header(props) {
   return (

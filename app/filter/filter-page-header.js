@@ -1,9 +1,9 @@
 import React from 'react'
 import styleable from 'react-styleable'
 
-import css from './page-header.css'
+import css from './filter-page-header.css'
 
-function PageHeader(props) {
+function FilterPageHeader(props) {
   return (
     <div className={props.css.root}>
       <div className={props.css.left}>{props.left}</div>
@@ -13,4 +13,4 @@ function PageHeader(props) {
   )
 }
 
-export default styleable(css)(PageHeader)
+export default styleable(css)(FilterPageHeader)
