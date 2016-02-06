@@ -8,7 +8,7 @@
   transform: rotate(180deg);
   color: var(--color);
   font-size: calc(var(--dimension) * .66);
-  line-height: var(--dimension);
+  line-height: calc(var(--dimension) - 6px);
   height: var(--dimension);
   width: var(--dimension);
   border: 3px solid var(--color);

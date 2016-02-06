@@ -23,18 +23,3 @@
 .continue {
   margin-top: 40px;
 }
-.continueBtn {
-  padding: 8px 15px;
-  background-color: rgb(7, 125, 210);
-  color: #fff;
-  text-shadow: 1px 1px 0 rgb(0, 94, 162);
-  border: none;
-  font-size: 14px;
-  letter-spacing: 0.5px;
-  text-decoration: none;
-}
-.continueBtnIcon {
-  padding-left: 10px;
-  font-size: .8em;
-  font-style: normal;
-}

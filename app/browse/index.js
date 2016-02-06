@@ -4,6 +4,7 @@ import { Link } from 'react-router'
 import styleable from 'react-styleable'
 import React, { Component } from 'react'
 
+import ActionButton from '../common/components/action-button'
 import * as actions from './actions'
 import { selector as browse } from './reducer'
 import BrowseDirectory from './browse-directory'
@@ -35,10 +36,7 @@ function renderContinue(props) {
   if (props.directory && props.files.length > 0 && props.destination)
     return (
       <div className={props.css.continue}>
-        <Link to="filter" className={props.css.continueBtn}>
-          Surf Images
-          <i className={props.css.continueBtnIcon}>▶</i>
-        </Link>
+        <ActionButton to="filter">Surf Images</ActionButton>
       </div>
     )
 }

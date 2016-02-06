@@ -3,6 +3,7 @@ import connect from 'redux-react-connect-by-name'
 import { Link } from 'react-router'
 import React from 'react'
 
+import ActionButton from '../common/components/action-button'
 import * as actions from './actions'
 import BackButton from '../common/components/back-button'
 import * as browseActions from '../browse/actions'
@@ -52,12 +53,17 @@ export default class FilterPageContainer extends React.Component {
       activeFile.name
     ]
   }
+  renderExport() {
+    if (this.props.filter.getToKeepFiles(this.props.browse.files).length > 0)
+      return <ActionButton to="/export">Finalize Export</ActionButton>
+  }
   render() {
     const activeFile = this.props.browse.getFile(this.props.filter.activeIndex)
     return (
       <FilterPageLayout>
         <FilterPageHeader center={this.renderCenterControls()}
-                          left={<BackButton href="/" />} />
+                          left={<BackButton href="/" />}
+                          right={this.renderExport()}/>
 
         <ImageLayout meta={this.renderMeta(activeFile)}>
           <Image file={activeFile} />
