@@ -4,9 +4,9 @@ import styleable from 'react-styleable'
 
 import css from './action-button.css'
 
-const { string } = React.PropTypes
+const { func, string } = React.PropTypes
 
-function ActionButton(props) {
+function renderLink(props) {
   return (
     <Link to={props.to} className={props.css.btn}>
       {props.children}
@@ -15,8 +15,24 @@ function ActionButton(props) {
   )
 }
 
+function renderButton(props) {
+  return (
+    <button onClick={props.onClick} className={props.css.btn}>
+      {props.children}
+      <i className={props.css.btnIcon}>▶</i>
+    </button>
+  )
+}
+
+function ActionButton(props) {
+  return props.to
+    ? renderLink(props)
+    : renderButton(props)
+}
+
 ActionButton.propTypes = {
-  to: string.isRequired
+  onClick: func,
+  to: string,
 }
 
 export default styleable(css)(ActionButton)

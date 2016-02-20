@@ -14,3 +14,6 @@
   font-size: .8em;
   font-style: normal;
 }
+.btn:hover {
+  background: linear-gradient(to bottom, rgb(20, 138, 222) 0%, rgb(7, 125, 210) 10%, rgb(3, 114, 194) 100%);
+}

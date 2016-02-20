@@ -1,0 +1,32 @@
+.root {
+  display: flex;
+  margin-bottom: 50px;
+}
+.panel {
+  flex: 2;
+  overflow: hidden;
+  text-align: center;
+}
+.divider {
+  padding-top: 33px;
+  flex: 1;
+  font-size: 80px;
+  font-weight: 100;
+  color: #575757;
+  text-align: center;
+}
+.num {
+  font-size: 80px;
+  font-weight: 100;
+  color: lightblue;
+}
+.label {
+  margin-bottom: 25px;
+  font-size: 26px;
+  color: #ababab;
+}
+.dir {
+  max-width: 100%;
+  color: #868585;
+  white-space: normal;
+}

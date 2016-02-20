@@ -5,6 +5,14 @@ export const initialState = {
   errors: []
 }
 
+function handleCopyTransitionStart(state, action) {
+  return {
+    ...state,
+    successes: initialState.successes,
+    errors: initialState.errors
+  }
+}
+
 function handleCopySuccess(state, action) {
   return {
     ...state,
@@ -21,6 +29,7 @@ function handleCopyError(state, action) {
 
 export default function reduce(state = initialState, action = {}) {
   const handlers = {
+    [ACTION_TYPES.COPY_TRANSITION_START]: handleCopyTransitionStart,
     [ACTION_TYPES.COPY_SUCCESS]: handleCopySuccess,
     [ACTION_TYPES.COPY_ERROR]: handleCopyError
   }

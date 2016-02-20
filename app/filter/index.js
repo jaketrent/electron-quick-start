@@ -62,7 +62,7 @@ export default class FilterPageContainer extends React.Component {
     return (
       <FilterPageLayout>
         <FilterPageHeader center={this.renderCenterControls()}
-                          left={<BackButton href="/" />}
+                          left={<BackButton to="/" />}
                           right={this.renderExport()}/>
 
         <ImageLayout meta={this.renderMeta(activeFile)}>

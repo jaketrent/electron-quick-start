@@ -1,0 +1,10 @@
+.root {
+  display: flex;
+  margin-top: 30px;
+}
+.output {
+  flex: 1;
+  margin-bottom: 4px;
+  font-size: 12px;
+  color: #6c6c6c;
+}

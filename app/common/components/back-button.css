@@ -1,5 +1,6 @@
 :root {
   --color: #505050;
+  --colorHover: #747272;
   --dimension: 60px;
 }
 
@@ -18,4 +19,6 @@
 }
 .root:hover {
   text-decoration: none;
+  color: var(--colorHover);
+  border-color: var(--colorHover);
 }

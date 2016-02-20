@@ -3,8 +3,14 @@ import connect from 'redux-react-connect-by-name'
 import { Link } from 'react-router'
 import React from 'react'
 
+import ActionButton from '../common/components/action-button'
 import * as actions from './actions'
-import ImagePile from './image-pile'
+import BackButton from '../common/components/back-button'
+import CopySummary from './copy-summary'
+import ExportPageHeader from './export-page-header'
+import ExportPageLayout from './export-page-layout'
+import ExportSummary from './export-summary'
+import OpenInFinder from './open-in-finder'
 import { selector as browse } from '../browse/reducer'
 import { selector as exportSelector } from './reducer'
 import { selector as filter } from '../filter/reducer'
@@ -14,14 +20,6 @@ import { selector as filter } from '../filter/reducer'
 export default class Export extends React.Component {
   getToKeepCount() {
     return this.props.filter.toKeep.length
-  }
-  getToDestroyCount() {
-    return this.props.filter.toDestroy.length
-  }
-  getToUndecidedCount() {
-    return this.props.browse.files.length
-         - this.props.filter.toKeep.length
-         - this.props.filter.toDestroy.length
   }
   handleCopy() {
     const files = this.props.filter.getToKeepFiles(this.props.browse.files)
@@ -34,22 +32,26 @@ export default class Export extends React.Component {
 
     return (
       <div>
-        <h2>Export</h2>
-        <Link to="/">to Browse</Link>
-        <Link to="/filter">to Filter</Link>
+        <ExportPageHeader>
+          <BackButton to="/filter" />
+        </ExportPageHeader>
 
-        <div>Summary</div>
-        <div>Keep {this.getToKeepCount()}</div>
-        <div>Destroy {this.getToDestroyCount()}</div>
-        <div>Undecided {this.getToUndecidedCount()}</div>
+        <ExportPageLayout>
 
-        <button onClick={this.handleCopy}>Copy to new location</button>
+          <ExportSummary srcCount={this.props.browse.files.length}
+                         srcDirectory={this.props.browse.directory.shortPath}
+                         destinationCount={this.getToKeepCount()}
+                         destinationDirectory={this.props.browse.destination.shortPath} />
 
-        <ImagePile files={toKeepFiles} />
-        <h3>Successes</h3>
-        <ImagePile files={successFiles} />
-        <h3>Errors</h3>
-        <ImagePile files={errorFiles} />
+          <ActionButton onClick={this.handleCopy}>Copy to new location</ActionButton>
+
+          <OpenInFinder target={this.props.browse.destination.path} />
+
+          <CopySummary errors={errorFiles}
+                       successes={successFiles} />
+
+        </ExportPageLayout>
+
       </div>
     )
   }

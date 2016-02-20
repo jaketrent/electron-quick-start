@@ -8,12 +8,12 @@ const { string } = React.PropTypes
 
 function BackButton(props) {
   return (
-    <Link to="/" className={props.css.root}>➡</Link>
+    <Link to={props.to} className={props.css.root}>➡</Link>
   )
 }
 
 BackButton.propTypes = {
-  href: string.isRequired
+  to: string.isRequired
 }
 
 export default styleable(css)(BackButton)
