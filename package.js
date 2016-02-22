@@ -11,7 +11,7 @@ const argv = require('minimist')(process.argv.slice(2))
 const pkg = require('./package.json')
 const devDeps = Object.keys(pkg.devDependencies)
 
-const appName = argv.name || argv.n || pkg.productName
+const appName = argv.name || argv.n || pkg.productName || 'Electron App'
 const shouldUseAsar = argv.asar || argv.a || false
 const shouldBuildAll = argv.all || false
 
@@ -53,7 +53,6 @@ if (version) {
 
 
 function startPack() {
-  console.log('start pack...')
   webpack(cfg, (err, stats) => {
     if (err) return console.error(err)
     del('release')
@@ -101,6 +100,8 @@ function pack(plat, arch, cb) {
     prune: true,
     out: `release/${plat}-${arch}`
   })
+
+  console.log("opts", opts)
 
   packager(opts, cb)
 }
